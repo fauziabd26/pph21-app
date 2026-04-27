@@ -1,10 +1,8 @@
 <?php
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-
 require_once __DIR__ . '/../config/database.php';
 
-$input = json_decode(file_get_contents('php://input'), true);
+$input      = json_decode(file_get_contents('php://input'), true);
 $session_id = $input['session_id'] ?? $_GET['session_id'] ?? '';
 
 if (empty($session_id)) {
@@ -13,10 +11,7 @@ if (empty($session_id)) {
 }
 
 $conn = getDB();
-$stmt = $conn->prepare("DELETE FROM perhitungan_pajak WHERE session_id = ?");
-$stmt->bind_param('s', $session_id);
-$stmt->execute();
-$affected = $stmt->affected_rows;
-$conn->close();
+$res  = pg_query_params($conn, "DELETE FROM perhitungan_pajak WHERE session_id=$1", [$session_id]);
+pg_close($conn);
 
-echo json_encode(['success' => true, 'deleted' => $affected]);
+echo json_encode(['success' => true, 'deleted' => pg_affected_rows($res)]);
