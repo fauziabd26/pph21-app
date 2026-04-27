@@ -1,0 +1,13 @@
+{
+    "name": "pph21/calculator",
+    "description": "Aplikasi Perhitungan PPh 21",
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.29",
+        "shuchkin/simplexlsx": "^1.1",
+        "shuchkin/simplexlsxgen": "^1.5"
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
