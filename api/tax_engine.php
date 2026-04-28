@@ -4,9 +4,9 @@ require_once __DIR__ . '/../config/database.php';
 function getKategoriTER($status_ptkp)
 {
     $s = strtoupper(trim($status_ptkp));
-    if (in_array($s, ['TK/0']))                          return 'A';
-    if (in_array($s, ['TK/1', 'TK/2', 'K/0']))             return 'B';
-    if (in_array($s, ['TK/3', 'K/1', 'K/2', 'K/3']))        return 'C';
+    if (in_array($s, ['TK/0', 'TK/1', 'K/0']))           return 'A';
+    if (in_array($s, ['TK/2', 'TK/3', 'K/1', 'K/2']))    return 'B';
+    if (in_array($s, ['K/3']))                             return 'C';
     return null;
 }
 

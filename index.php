@@ -1243,22 +1243,22 @@
                 <div class="ter">TER A</div>TK/0
               </div>
               <div class="ptkp-item">
-                <div class="ter">TER B</div>TK/1
+                <div class="ter">TER A</div>TK/1
+              </div>
+              <div class="ptkp-item">
+                <div class="ter">TER A</div>K/0
               </div>
               <div class="ptkp-item">
                 <div class="ter">TER B</div>TK/2
               </div>
               <div class="ptkp-item">
-                <div class="ter">TER B</div>K/0
+                <div class="ter">TER B</div>TK/3
               </div>
               <div class="ptkp-item">
-                <div class="ter">TER C</div>TK/3
+                <div class="ter">TER B</div>K/1
               </div>
               <div class="ptkp-item">
-                <div class="ter">TER C</div>K/1
-              </div>
-              <div class="ptkp-item">
-                <div class="ter">TER C</div>K/2
+                <div class="ter">TER B</div>K/2
               </div>
               <div class="ptkp-item">
                 <div class="ter">TER C</div>K/3
@@ -1329,16 +1329,16 @@
               <option value="">— Pilih Status PTKP —</option>
               <optgroup label="TER A">
                 <option value="TK/0">TK/0 — Tidak Kawin, 0 Tanggungan</option>
-              </optgroup>
-              <optgroup label="TER B">
                 <option value="TK/1">TK/1 — Tidak Kawin, 1 Tanggungan</option>
-                <option value="TK/2">TK/2 — Tidak Kawin, 2 Tanggungan</option>
                 <option value="K/0">K/0 — Kawin, 0 Tanggungan</option>
               </optgroup>
-              <optgroup label="TER C">
+              <optgroup label="TER B">
+                <option value="TK/2">TK/2 — Tidak Kawin, 2 Tanggungan</option>
                 <option value="TK/3">TK/3 — Tidak Kawin, 3 Tanggungan</option>
                 <option value="K/1">K/1 — Kawin, 1 Tanggungan</option>
                 <option value="K/2">K/2 — Kawin, 2 Tanggungan</option>
+              </optgroup>
+              <optgroup label="TER C">
                 <option value="K/3">K/3 — Kawin, 3 Tanggungan</option>
               </optgroup>
             </select>
@@ -1471,8 +1471,8 @@
         </div>
 
         <div class="modal-footer">
-          <button class="btn btn-outline" onclick="closeModal()">🧮 Kembali</button>
-          <!-- <button class="btn btn-danger" onclick="resetCalc()">🔄 Reset Form</button> -->
+          <button class="btn btn-outline" onclick="closeModal()">🧮 Hitung Lagi</button>
+          <button class="btn btn-danger" onclick="resetCalc()">🔄 Reset Form</button>
         </div>
       </div>
     </div>
@@ -1825,9 +1825,9 @@
 
     function getKategoriTER(ptkp) {
       const p = ptkp.toUpperCase().trim();
-      if (['TK/0'].includes(p)) return 'A';
-      if (['TK/1', 'TK/2', 'K/0'].includes(p)) return 'B';
-      if (['TK/3', 'K/1', 'K/2', 'K/3'].includes(p)) return 'C';
+      if (['TK/0', 'TK/1', 'K/0'].includes(p))         return 'A';
+      if (['TK/2', 'TK/3', 'K/1', 'K/2'].includes(p))  return 'B';
+      if (['K/3'].includes(p))                           return 'C';
       return null;
     }
 
@@ -1912,7 +1912,6 @@
       document.getElementById('btnRowBefore').style.display = 'flex';
       document.getElementById('btnRowAfter').style.display = 'none';
     }
-
     function showUploadAlert(type, msg) {
       const el = document.getElementById(type === 'error' ? 'alertError' : 'alertSuccess');
       el.textContent = msg;
@@ -1928,6 +1927,7 @@
       el.textContent = msg;
       el.classList.add('show');
     }
+
   </script>
 </body>
 
